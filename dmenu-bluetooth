@@ -319,17 +319,17 @@ show_menu() {
 
 # dmenu command to pipe into. Extra arguments to dmenu-bluetooth are passed through to dmenu. This
 # allows the user to set fonts, sizes, colours, etc.
-DMENU_BLUETOOTH_LAUNCHER="${DMENU_BLUETOOTH_LAUNCHER:-dmenu}"
+DMENU="${DMENU:-dmenu}"
 run_dmenu() {
-    case "$DMENU_BLUETOOTH_LAUNCHER" in
+    case "$DMENU" in
         rofi)
-            DMENU_BLUETOOTH_LAUNCHER="rofi -dmenu"
+            DMENU="rofi -dmenu"
             ;;
         fuzzel)
-            DMENU_BLUETOOTH_LAUNCHER="fuzzel --dmenu"
+            DMENU="fuzzel --dmenu"
             ;;
     esac
-    $DMENU_BLUETOOTH_LAUNCHER "${dmenu_args[@]}"
+    $DMENU "${dmenu_args[@]}"
 }
 
 print_help() {
@@ -347,8 +347,7 @@ print_help() {
     echo "--connected-icon [ICON]     add icon on device list next to connected devices"
     echo ""
     echo "environment variables:"
-    echo "  DMENU_BLUETOOTH_PROMPT    dmenu prompt"
-    echo "  DMENU_BLUETOOTH_LAUNCHER  command to use instead of 'dmenu'"
+    echo "  DMENU                     command to use instead of 'dmenu'"
     echo ""
     echo "Positional arguments have to be placed after all other arguments."
     echo "A PROMPT positional argument will be interpreted as part of DMENU_ARGS if it starts with '-'. It won't be parsed if the DMENU_BLUETOOTH_PROMPT environment variable is set."
